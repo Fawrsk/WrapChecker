@@ -13,7 +13,7 @@ PROG_DESC = 'Checks the length of each line in a document to ensure it is wrappe
 PROG_VERSION='1.0'
 
 DEFAULT_CONFIG = {
-    'length': 90,
+    'limit': 90,
     'encoding': 'utf-8',
     'tab-size': 4
 }
@@ -27,9 +27,9 @@ def parse_args():
                prog=PROG_NAME,
                description=PROG_DESC)
     parser.add_argument('filename')
-    parser.add_argument('-l', '--length', type=int, default=DEFAULT_CONFIG['length'], help='Length limit of line (default: {0})'.format(DEFAULT_CONFIG['length']))
-    parser.add_argument('-e', '--encoding', type=str, default=DEFAULT_CONFIG['encoding'], help='File encoding to use (default: {0})'.format(DEFAULT_CONFIG['encoding']))
-    parser.add_argument('-t', '--tab-size', type=int, default=DEFAULT_CONFIG['tab-size'], help='Size of tab characters (default: {0})'.format(DEFAULT_CONFIG['tab-size']))
+    parser.add_argument('-l', '--limit', type=int, default=DEFAULT_CONFIG['limit'], help='length limit of line (default: {0})'.format(DEFAULT_CONFIG['limit']))
+    parser.add_argument('-e', '--encoding', type=str, default=DEFAULT_CONFIG['encoding'], help='file encoding to use (default: {0})'.format(DEFAULT_CONFIG['encoding']))
+    parser.add_argument('-t', '--tab-size', type=int, default=DEFAULT_CONFIG['tab-size'], help='size of tab characters (default: {0})'.format(DEFAULT_CONFIG['tab-size']))
     parser.add_argument('-v', '--version', action='version', version='{0} v{1}'.format(PROG_NAME, PROG_VERSION))
     return parser.parse_args()
 
@@ -68,8 +68,8 @@ def main():
     Main routine
     '''
     args = parse_args()
-    print('Line length limit: {0}'.format(args.length))
-    check_document(args.filename, args.length, args.encoding, args.tab_size)
+    print('Line length limit: {0}'.format(args.limit))
+    check_document(args.filename, args.limit, args.encoding, args.tab_size)
 
 
 if __name__ == '__main__':
